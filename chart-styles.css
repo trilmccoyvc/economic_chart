@@ -1,0 +1,150 @@
+/* Import Montserrat Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Color Variables - Sesuai dengan design system Anda */
+:root {
+  --primary-color: #20b2aa;      /* Teal */
+  --secondary-color: #00528a;    /* Dark Blue */
+  --tertiary-color: #b15bcf;     /* Purple */
+  --hover-color: #25d0c7;        /* Light Teal */
+  --accent-color: #a487cf;       /* Light Purple */
+  
+  --text-primary: #1f2937;       /* Dark Gray */
+  --text-secondary: #6b7280;     /* Medium Gray */
+  --text-light: #9ca3af;         /* Light Gray */
+  
+  --bg-white: #ffffff;
+  --bg-gray-50: #f9fafb;
+  --bg-gray-100: #f3f4f6;
+  --border-gray: #e5e7eb;
+  
+  --font-family: 'Montserrat', sans-serif;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --border-radius: 0.5rem;
+  --transition: all 0.3s ease;
+}
+
+/* PENTING: Semua style di-scope ke .chart-page untuk mencegah conflict */
+.chart-page * {
+  font-family: var(--font-family);
+}
+
+.chart-page .chart-title {
+  font-family: var(--font-family);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.chart-page .chart-subtitle {
+  font-family: var(--font-family);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.chart-page .chart-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart-page .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.chart-page .btn-primary:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-1px);
+}
+
+.chart-page .btn-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.chart-page .btn-secondary:hover {
+  background-color: #003d6b;
+  transform: translateY(-1px);
+}
+
+.chart-page .loading-spinner {
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 2rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chart-page .chart-title {
+    font-size: 1.75rem;
+  }
+  
+  .chart-page .chart-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .chart-page .chart-container {
+    padding: 1rem;
+  }
+  
+  .chart-page .btn-primary,
+  .chart-page .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Utility Classes */
+.chart-page .w-full { width: 100%; }
+.chart-page .flex { display: flex; }
+.chart-page .grid { display: grid; }
+.chart-page .hidden { display: none; }
+.chart-page .text-center { text-align: center; }
+.chart-page .mb-4 { margin-bottom: 1rem; }
+.chart-page .mb-6 { margin-bottom: 1.5rem; }
+.chart-page .p-4 { padding: 1rem; }
+.chart-page .gap-4 { gap: 1rem; }
+.chart-page .gap-6 { gap: 1.5rem; }
