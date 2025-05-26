@@ -1,7 +1,6 @@
-/* Import Montserrat Font */
+/* Chart Styles - Hanya aktif di halaman dengan class 'chart-page' */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Color Variables - Sesuai dengan design system Anda */
 :root {
   --primary-color: #20b2aa;      /* Teal */
   --secondary-color: #00528a;    /* Dark Blue */
@@ -9,9 +8,9 @@
   --hover-color: #25d0c7;        /* Light Teal */
   --accent-color: #a487cf;       /* Light Purple */
   
-  --text-primary: #1f2937;       /* Dark Gray */
-  --text-secondary: #6b7280;     /* Medium Gray */
-  --text-light: #9ca3af;         /* Light Gray */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
   
   --bg-white: #ffffff;
   --bg-gray-50: #f9fafb;
@@ -19,20 +18,32 @@
   --border-gray: #e5e7eb;
   
   --font-family: 'Montserrat', sans-serif;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --border-radius: 0.5rem;
   --transition: all 0.3s ease;
 }
 
-/* PENTING: Semua style di-scope ke .chart-page untuk mencegah conflict */
+/* SCOPE semua style ke .chart-page untuk mencegah conflict */
 .chart-page * {
   font-family: var(--font-family);
 }
 
+.chart-page .chart-section {
+  background: var(--bg-gray-50);
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.chart-page .chart-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  margin: 0 auto 2rem auto;
+  max-width: 1200px;
+}
+
 .chart-page .chart-title {
-  font-family: var(--font-family);
   font-size: 2rem;
   font-weight: 800;
   color: var(--text-primary);
@@ -41,7 +52,6 @@
 }
 
 .chart-page .chart-subtitle {
-  font-family: var(--font-family);
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -49,31 +59,37 @@
   text-align: center;
 }
 
-.chart-page .chart-container {
-  background: var(--bg-white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-md);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  width: 100%;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+.chart-page .chart-canvas-container {
+  position: relative;
+  height: 400px;
+  margin: 2rem 0;
 }
 
-.chart-page .btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
+.chart-page .controls-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.chart-page .btn {
   padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: var(--border-radius);
   font-family: var(--font-family);
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
+}
+
+.chart-page .btn-primary {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .chart-page .btn-primary:hover {
@@ -84,16 +100,6 @@
 .chart-page .btn-secondary {
   background-color: var(--secondary-color);
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius);
-  font-family: var(--font-family);
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
 }
 
 .chart-page .btn-secondary:hover {
@@ -101,14 +107,91 @@
   transform: translateY(-1px);
 }
 
+.chart-page .btn-tertiary {
+  background-color: var(--tertiary-color);
+  color: white;
+}
+
+.chart-page .btn-tertiary:hover {
+  background-color: #9a4fb8;
+  transform: translateY(-1px);
+}
+
+.chart-page .btn.active {
+  box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.3);
+}
+
+.chart-page .info-panel {
+  background: var(--bg-gray-50);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.chart-page .info-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.chart-page .info-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.chart-page .scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.chart-page .scenario-card {
+  background: white;
+  border: 2px solid var(--border-gray);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.chart-page .scenario-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(32, 178, 170, 0.15);
+}
+
+.chart-page .scenario-card.active {
+  border-color: var(--primary-color);
+  background: rgba(32, 178, 170, 0.05);
+}
+
+.chart-page .scenario-title {
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.chart-page .scenario-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.chart-page .loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
 .chart-page .loading-spinner {
-  border: 4px solid #f3f4f6;
+  border: 4px solid var(--bg-gray-100);
   border-top: 4px solid var(--primary-color);
   border-radius: 50%;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  margin: 2rem auto;
+  margin: 0 auto 1rem auto;
 }
 
 @keyframes spin {
@@ -116,7 +199,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
   .chart-page .chart-title {
     font-size: 1.75rem;
@@ -127,24 +210,35 @@
   }
   
   .chart-page .chart-container {
-    padding: 1rem;
+    padding: 1.5rem;
   }
   
-  .chart-page .btn-primary,
-  .chart-page .btn-secondary {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+  .chart-page .chart-canvas-container {
+    height: 300px;
+  }
+  
+  .chart-page .controls-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chart-page .btn {
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
   }
 }
 
-/* Utility Classes */
-.chart-page .w-full { width: 100%; }
-.chart-page .flex { display: flex; }
-.chart-page .grid { display: grid; }
-.chart-page .hidden { display: none; }
-.chart-page .text-center { text-align: center; }
-.chart-page .mb-4 { margin-bottom: 1rem; }
-.chart-page .mb-6 { margin-bottom: 1.5rem; }
-.chart-page .p-4 { padding: 1rem; }
-.chart-page .gap-4 { gap: 1rem; }
-.chart-page .gap-6 { gap: 1.5rem; }
+@media (max-width: 480px) {
+  .chart-page .chart-section {
+    padding: 2rem 0.5rem;
+  }
+  
+  .chart-page .chart-container {
+    padding: 1rem;
+  }
+  
+  .chart-page .chart-canvas-container {
+    height: 250px;
+  }
+}
